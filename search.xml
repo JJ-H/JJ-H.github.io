@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Docker容器</title>
+    <url>/2020/03/13/docker%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<h1 id="Docker相关命令"><a href="#Docker相关命令" class="headerlink" title="Docker相关命令"></a>Docker相关命令</h1><h2 id="启动Docker"><a href="#启动Docker" class="headerlink" title="启动Docker"></a>启动Docker</h2><pre><code>systemctl start dcker
+          stop
+          restart
+          status (产看docker状态)
+          enable (设置开机启动)</code></pre><h2 id="查找镜像"><a href="#查找镜像" class="headerlink" title="查找镜像"></a>查找镜像</h2><pre><code>docker search 镜像名</code></pre><h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2><pre><code>docker pull 镜像名 : 版本号</code></pre><h2 id="删除镜像"><a href="#删除镜像" class="headerlink" title="删除镜像"></a>删除镜像</h2><pre><code>docker rmi 镜像id （或名称:版本号）</code></pre><h2 id="查看所有镜像的id"><a href="#查看所有镜像的id" class="headerlink" title="查看所有镜像的id"></a>查看所有镜像的id</h2><pre><code>docker images -q</code></pre><h1 id="Docker容器相关命令"><a href="#Docker容器相关命令" class="headerlink" title="Docker容器相关命令"></a>Docker容器相关命令</h1><h2 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h2><pre><code>docker run -it --name=容器名 镜像名 : 版本名 /bin/bash
+
+i：保持运行
+t：分配伪终端
+/bin/bash：指定shell</code></pre><h2 id="退出容器"><a href="#退出容器" class="headerlink" title="退出容器"></a>退出容器</h2><pre><code>exit</code></pre><h2 id="查看正在运行的容器"><a href="#查看正在运行的容器" class="headerlink" title="查看正在运行的容器"></a>查看正在运行的容器</h2><pre><code>docker ps</code></pre><h2 id="查看所有容器"><a href="#查看所有容器" class="headerlink" title="查看所有容器"></a>查看所有容器</h2><pre><code>docker ps -a</code></pre><h2 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h2><pre><code>docker exec -it 容器名 /bin/bash
+            -id （exit不会不会退出，后台运行）</code></pre><h2 id="删除容器"><a href="#删除容器" class="headerlink" title="删除容器"></a>删除容器</h2><pre><code>docker rm 容器名/id</code></pre><h1 id="Docker中的数据卷"><a href="#Docker中的数据卷" class="headerlink" title="Docker中的数据卷"></a>Docker中的数据卷</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><pre><code>数据卷是宿主机中的一个目录或文件
+
+总结：docker容器中的文件与本机文件操作相关联（同时产生同样的变化）
+
+* 一个数据卷能被多个容器挂载</code></pre><h2 id="配置数据卷"><a href="#配置数据卷" class="headerlink" title="配置数据卷"></a>配置数据卷</h2><pre><code>. 创建启动容器时，使用-v参数
+docker run ... -v 宿主机目录:容器内目录 ...
+
+* 目录必须时绝对路径
+  若文件不存在，则自动创建</code></pre>]]></content>
+      <categories>
+        <category>Docker</category>
+      </categories>
+      <tags>
+        <tag>Docker基本操作</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux基本命令的使用</title>
+    <url>/2020/03/09/linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h1 id="Linux文件系统目录说明"><a href="#Linux文件系统目录说明" class="headerlink" title="Linux文件系统目录说明"></a>Linux文件系统目录说明</h1><pre><code>/home 用户的主目录，在Linux中，每个用户都有一个自己的目录，一般该目录是以用户的账号命名的
+
+/lib 存放系统最基本的动态连接共享库，类似于windows中的DLL文件
+
+/lost+found 该目录一般情况为空，当系统非法关机后，这里就存放了一些文件
+
+/media linux系统会自动识别一些设备，例如U盘，光驱等，当识别后，Linux会把识别的设备挂载到这个目录下
+
+/mnt 用户临时挂载别的文件系统的，我们可以将光驱挂载在/mnt/上，然后进入该目录就可以查看到光驱里的内容了
+
+/opt 给主机额外安装软件摆放的目录
+
+/proc 虚拟目录， 系统内存的映射，该目录的内容不在硬盘上，而在内存中
+
+/root 系统管理员，也称超级权限者的用户主目录
+
+/sbin s代表super user，存放的是系统管理员使用的系统管理程序
+
+/srv 该目录存放一些服务器启动之后需要提取的数据
+
+/tmp 临时文件目录
+
+/usr 此目录十分重要，用户的很多应用和文件都存放在此目录之下
+
+/usr/bin 系统用户使用的应用程序
+
+/usr/sbin 超级用户使用的比较高级的管理程序和系统守护进程
+
+/usr/src 内核源码默认的放置位置</code></pre><h1 id="使用终端连接服务器"><a href="#使用终端连接服务器" class="headerlink" title="使用终端连接服务器"></a>使用终端连接服务器</h1><pre><code>ssh -p 22 用户名@ip地址</code></pre><h1 id="挂载"><a href="#挂载" class="headerlink" title="挂载"></a>挂载</h1><h2 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h2><p>把一个物理分区分配一个目录</p>
+<p><code>命令</code>:mount</p>
+<h2 id="Linux中一切皆为文件"><a href="#Linux中一切皆为文件" class="headerlink" title="Linux中一切皆为文件"></a>Linux中一切皆为文件</h2><h1 id="运行模式：runlevel"><a href="#运行模式：runlevel" class="headerlink" title="运行模式：runlevel"></a>运行模式：runlevel</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">init 3  (字符界面)</span><br><span class="line">init 5  (图形界面)</span><br><span class="line">init 6  (重启)  [reboot]</span><br><span class="line">init 0  (关机)  [shutdown]</span><br></pre></td></tr></table></figure>
+
+<h1 id="判断用户是否为超级管理员"><a href="#判断用户是否为超级管理员" class="headerlink" title="判断用户是否为超级管理员"></a>判断用户是否为超级管理员</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># uid 0 代表管理员 符号：#</span><br><span class="line"># uid 非0 代表普通用户 符号：$</span><br><span class="line">id -u</span><br></pre></td></tr></table></figure>
+
+<h1 id="linux界面"><a href="#linux界面" class="headerlink" title="linux界面"></a>linux界面</h1><pre><code>GUI：图形界面
+CLI：命令行界面</code></pre><h1 id="查看用户"><a href="#查看用户" class="headerlink" title="查看用户"></a>查看用户</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">who  # 当前多有登录用户</span><br><span class="line">whoami 或 who am i   # 当前登录用户</span><br></pre></td></tr></table></figure>
+
+<h1 id="显示cpu、硬盘信息"><a href="#显示cpu、硬盘信息" class="headerlink" title="显示cpu、硬盘信息"></a>显示cpu、硬盘信息</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">lscpu</span><br><span class="line"></span><br><span class="line">lsblk</span><br></pre></td></tr></table></figure>
+
+<h2 id="注意：linux默认使用的是-bash-shell"><a href="#注意：linux默认使用的是-bash-shell" class="headerlink" title="注意：linux默认使用的是 bash shell"></a>注意：linux默认使用的是 bash shell</h2><h1 id="查看使用的shell"><a href="#查看使用的shell" class="headerlink" title="查看使用的shell"></a>查看使用的shell</h1><pre><code>echo $SHELL</code></pre><h1 id="退出命令"><a href="#退出命令" class="headerlink" title="退出命令"></a>退出命令</h1><pre><code>ctrl+d
+exit
+logout</code></pre><h1 id="清除屏幕"><a href="#清除屏幕" class="headerlink" title="清除屏幕"></a>清除屏幕</h1><pre><code>clear
+
+ctrl+l</code></pre><h1 id="查看主机名"><a href="#查看主机名" class="headerlink" title="查看主机名"></a>查看主机名</h1><pre><code>hostname</code></pre><h1 id="nano-文本编辑"><a href="#nano-文本编辑" class="headerlink" title="nano 文本编辑"></a>nano 文本编辑</h1><h1 id="centos下，登录提示信息文件-etc-moted"><a href="#centos下，登录提示信息文件-etc-moted" class="headerlink" title="centos下，登录提示信息文件/etc/moted"></a>centos下，登录提示信息文件/etc/moted</h1><h1 id="shell命令的种类"><a href="#shell命令的种类" class="headerlink" title="shell命令的种类"></a>shell命令的种类</h1><h2 id="1、内部命令（执行速度快）"><a href="#1、内部命令（执行速度快）" class="headerlink" title="1、内部命令（执行速度快）"></a>1、内部命令（执行速度快）</h2><pre><code>shell内部自带的
+可通过 help 或 enable 查看</code></pre><h2 id="2、外部命令（需要下载才能使用）"><a href="#2、外部命令（需要下载才能使用）" class="headerlink" title="2、外部命令（需要下载才能使用）"></a>2、外部命令（需要下载才能使用）</h2><h1 id="判断命令的类型"><a href="#判断命令的类型" class="headerlink" title="判断命令的类型"></a>判断命令的类型</h1><pre><code>type [-a] 命令  (a代表列出所有该命令的类型（名称相同的命令可能有多个）)</code></pre><h1 id="禁用命令"><a href="#禁用命令" class="headerlink" title="禁用命令"></a>禁用命令</h1><pre><code>enable -n 命令</code></pre><h1 id="hash命令"><a href="#hash命令" class="headerlink" title="hash命令"></a>hash命令</h1><pre><code>hash -d 命令    # 从hash表中删除指定的命令
+hash -l        # 删除hash表中所有的命令</code></pre><h1 id="使修改的文件生效"><a href="#使修改的文件生效" class="headerlink" title="使修改的文件生效"></a>使修改的文件生效</h1><pre><code>source 文件名   # 将文件读入内存，使文件生效
+
+其中source 可用 . 代替</code></pre><h1 id="取别名"><a href="#取别名" class="headerlink" title="取别名"></a>取别名</h1><pre><code>alias NAME=&apos;VALUE&apos;
+
+该别名只在当前shell中有效
+若想shi别名永久生效，要写入配置文件中
+
+～/.bashrc 仅对当前用户生效
+
+/etc/bashrc 对所有用户生效</code></pre><h1 id="多个命令用-隔开，将逐一执行，长命令可食用-进行换行"><a href="#多个命令用-隔开，将逐一执行，长命令可食用-进行换行" class="headerlink" title="多个命令用 ; 隔开，将逐一执行，长命令可食用 \ 进行换行"></a>多个命令用 ; 隔开，将逐一执行，长命令可食用 \ 进行换行</h1><h1 id="shutdown命令"><a href="#shutdown命令" class="headerlink" title="shutdown命令"></a><code>shutdown</code>命令</h1><pre><code>shutdown [选项] [时间] # 指定时间进行对应选项的操作
+-h  关机  halt
+-r  重启  reboot
+-c  取消  cancel</code></pre><h1 id="screen命令"><a href="#screen命令" class="headerlink" title="screen命令"></a><code>screen</code>命令</h1><h1 id="查看内核版本"><a href="#查看内核版本" class="headerlink" title="查看内核版本"></a>查看内核版本</h1><pre><code>uname</code></pre><h1 id="输出命令"><a href="#输出命令" class="headerlink" title="输出命令"></a>输出命令</h1><pre><code>echo
+&apos;&apos; 单引号，不敏感，不识别变量、命令，当作普通字符串
+&quot;&quot; 双引号，可识别变量
+`` 倒引号，既能识别变量，又能识别命令</code></pre><h1 id="touch可以创建一个空文件"><a href="#touch可以创建一个空文件" class="headerlink" title="touch可以创建一个空文件"></a>touch可以创建一个空文件</h1><pre><code>touch filename</code></pre><h2 id="centos中文件颜色"><a href="#centos中文件颜色" class="headerlink" title="centos中文件颜色"></a>centos中文件颜色</h2><pre><code>绿色 可执行文件
+红色 打包文件</code></pre><h1 id="用户和用户组管理"><a href="#用户和用户组管理" class="headerlink" title="用户和用户组管理"></a>用户和用户组管理</h1><pre><code>useradd option username # 添加用户
+
+userdel     #删除用户
+
+usermod     #修改用户
+
+passwd      #设置密码</code></pre><h1 id="查看文件命令"><a href="#查看文件命令" class="headerlink" title="查看文件命令"></a>查看文件命令</h1><pre><code>cat -n filename  # 查看文件的前n行
+tail -n filename  # 查看文件的后n行
+
+more filename #分页查看文件，空格或 f 键翻页，回车一行一行</code></pre><h1 id="创建软-硬链接"><a href="#创建软-硬链接" class="headerlink" title="创建软/硬链接"></a>创建软/硬链接</h1><pre><code>ln -s 源文件 目的文件  # s 代表创建软连接
+ln 源文件 目的文件 # 不加参数创建硬链接
+
+区别：硬链接不能跨分区，硬链接源文件与目标文件的 i 节点相同</code></pre><h1 id="文件查找"><a href="#文件查找" class="headerlink" title="文件查找"></a>文件查找</h1><pre><code>find 目录 -name 文件名</code></pre><h1 id="文件查找-locate"><a href="#文件查找-locate" class="headerlink" title="文件查找 locate"></a>文件查找 <code>locate</code></h1><pre><code>locate + 文件
+
+updatedb</code></pre><h1 id="grep搜索命令"><a href="#grep搜索命令" class="headerlink" title="grep搜索命令"></a><code>grep</code>搜索命令</h1><pre><code>grep 文件名 目录</code></pre><h1 id="压缩、解压缩命令"><a href="#压缩、解压缩命令" class="headerlink" title="压缩、解压缩命令"></a>压缩、解压缩命令</h1><pre><code>.zip # windows和Linux都可以解压
+.gz  # gzip压缩
+解压方式
+gunzip 文件名
+或 
+gzip -d 文件名</code></pre><h1 id="tar-打包目录（不能保留原文件）"><a href="#tar-打包目录（不能保留原文件）" class="headerlink" title="tar 打包目录（不能保留原文件）"></a><code>tar</code> 打包目录（不能保留原文件）</h1><pre><code>-x 解包
+-c 打包
+-v 显示详细信息
+-f 指定文件名
+-z 打包同时压缩</code></pre><h1 id="zip"><a href="#zip" class="headerlink" title="zip"></a><code>zip</code></h1><h2 id="能保留原文件）压缩比不高，不如-gzip"><a href="#能保留原文件）压缩比不高，不如-gzip" class="headerlink" title="能保留原文件）压缩比不高，不如 gzip"></a>能保留原文件）压缩比不高，不如 <code>gzip</code></h2><pre><code>zip [-r] 文件（目录） # r代表压缩目录</code></pre><h1 id="解压缩-unzip"><a href="#解压缩-unzip" class="headerlink" title="解压缩 unzip"></a>解压缩 <code>unzip</code></h1><pre><code>unzip filename</code></pre><h1 id="给在线的用户发信息"><a href="#给在线的用户发信息" class="headerlink" title="给在线的用户发信息"></a>给在线的用户发信息</h1><pre><code>write 用户名  # ctrl + d 结束
+
+wall [message] # 广播信息，所有人都能接收到</code></pre><h1 id="ping命令-测试网络连通性"><a href="#ping命令-测试网络连通性" class="headerlink" title="ping命令(测试网络连通性)"></a><code>ping</code>命令(测试网络连通性)</h1><pre><code>ping -c num ip地址 # num代表次数</code></pre><h1 id="查看ip信息"><a href="#查看ip信息" class="headerlink" title="查看ip信息"></a>查看ip信息</h1><pre><code>ifconfig</code></pre><h1 id="发送邮件"><a href="#发送邮件" class="headerlink" title="发送邮件"></a>发送邮件</h1><pre><code>mail 用户名</code></pre><h1 id="查看邮件"><a href="#查看邮件" class="headerlink" title="查看邮件"></a>查看邮件</h1><pre><code>mail</code></pre><h1 id="netstat-显示网络相关信息"><a href="#netstat-显示网络相关信息" class="headerlink" title="netstat (显示网络相关信息)"></a><code>netstat</code> (显示网络相关信息)</h1><pre><code>-t  tcp协议
+-u  udp协议
+-l  监听
+-r  路由</code></pre><h1 id="挂载-1"><a href="#挂载-1" class="headerlink" title="挂载"></a>挂载</h1><pre><code>mount 
+
+例如:
+    mount -t iso9600 /dev/sro /mnt/cdrom/</code></pre><h1 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h1><pre><code>umount</code></pre><h1 id="查看磁盘大小"><a href="#查看磁盘大小" class="headerlink" title="查看磁盘大小"></a>查看磁盘大小</h1><pre><code>df [-sh]</code></pre><h1 id="vim编辑器"><a href="#vim编辑器" class="headerlink" title="vim编辑器"></a>vim编辑器</h1><pre><code>i、o、a 输入
+按ESC进入命令交互模式
+
+a 光标所在字符后面插入
+A 行尾
+i 光标所在字符前
+I 行首
+o 光标下插入一行
+O 光标上插入一行
+
+gg 到第一行
+G 到最后一行
+:n 到第n行
+$ 行尾
+0 行首
+x 删除光标下所在字符
+nx 删除光标下所在的后n哥字符
+dd 删除一行
+yy 复制当前行
+nyy 复制当前行一下n行
+
+p（小写） 粘贴当前行下方
+P（大写）粘贴当前行上方
+/ 查找</code></pre><h1 id="软件包分类"><a href="#软件包分类" class="headerlink" title="软件包分类"></a>软件包分类</h1><pre><code>1、源码包（开源）
+2、二进制包（rpm包，系统默认包）</code></pre><h2 id="源码包的优点"><a href="#源码包的优点" class="headerlink" title="源码包的优点"></a>源码包的优点</h2><pre><code>1、开源
+2、可以自由选择所需要的功能
+3、软件是编译安装，所以更加适合自己的系统，更加稳定，效率也更高
+4、卸载方便</code></pre><h2 id="源码包的缺点"><a href="#源码包的缺点" class="headerlink" title="源码包的缺点"></a>源码包的缺点</h2><pre><code>1、安装过程步骤较多
+2、编译过程时间较长
+3、因为是编译安装，安装过程中一旦报错不好解决</code></pre><h2 id="rpm包优点"><a href="#rpm包优点" class="headerlink" title="rpm包优点"></a>rpm包优点</h2><pre><code>1、包管理方便
+2、安装速度快</code></pre><h2 id="rpm包的缺点"><a href="#rpm包的缺点" class="headerlink" title="rpm包的缺点"></a>rpm包的缺点</h2><pre><code>1、源码无法查看
+2、功能选择不灵活
+3、依赖性</code></pre><h1 id="rpm包管理"><a href="#rpm包管理" class="headerlink" title="rpm包管理"></a>rpm包管理</h1><pre><code>rpm #存在依赖（需手动安装）
+yum #在线管理（自动下载依赖库）
+    （目前yum只在centos中免费，redhat中收费）</code></pre><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre><code>rpm -ivh 包全名
+    -i 安装
+    -v 显示详细信息
+    -h 显示进度</code></pre><h2 id="升级"><a href="#升级" class="headerlink" title="升级"></a>升级</h2><pre><code>rpm -Uvh 包全名
+    -U （upgrade）升级（大写）</code></pre><h2 id="卸载-1"><a href="#卸载-1" class="headerlink" title="卸载"></a>卸载</h2><pre><code>rpm -e 包全名</code></pre><h2 id="查询包是否安装"><a href="#查询包是否安装" class="headerlink" title="查询包是否安装"></a>查询包是否安装</h2><pre><code>rpm -q 包名
+    -a 所有
+    -l 列表</code></pre><h2 id="查询安装路径"><a href="#查询安装路径" class="headerlink" title="查询安装路径"></a>查询安装路径</h2><pre><code>rpm -ql 包名</code></pre><h1 id="yum在线管理"><a href="#yum在线管理" class="headerlink" title="yum在线管理"></a><code>yum</code>在线管理</h1><pre><code>yum源配置文件 /etc/yum.repos.d/
+
+yum list    # 显示yum资源列表
+yum search 关键字（包名） # 从yum源搜索包
+yum -y update 包名      # 不加包名默认升级所有
+    -y 默认回答yes</code></pre><h1 id="Shell基础"><a href="#Shell基础" class="headerlink" title="Shell基础"></a>Shell基础</h1><h2 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h2><pre><code>export 变量名=变量值
+$PATH  :分隔符</code></pre><h2 id="source命令"><a href="#source命令" class="headerlink" title="source命令"></a><code>source</code>命令</h2><pre><code>source 配置文件
+或
+.配置文件
+
+作用：使配置文件生效</code></pre><h2 id="配置文件路径"><a href="#配置文件路径" class="headerlink" title="配置文件路径"></a>配置文件路径</h2><pre><code>/etc/profile
+/etc/profile.d/*.sh
+~/.bash_profile
+~/.bashrc
+/etc/bashrc
+
+/etc/ 下的配置文件对所有用户生效</code></pre>]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>linux基本操作</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java原码、反码、补码</title>
+    <url>/2020/05/09/java%E5%8E%9F%E7%A0%81%E3%80%81%E5%8F%8D%E7%A0%81%E3%80%81%E8%A1%A5%E7%A0%81/</url>
+    <content><![CDATA[<h2 id="java原码、反码、补码"><a href="#java原码、反码、补码" class="headerlink" title="java原码、反码、补码"></a>java原码、反码、补码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 1、在 Java 语言中整数可以采用 二进制 、八进制、十进制、十六进制 形式来书写 字面量</span></span><br><span class="line"><span class="comment"> *      二进制: 0b 或 0B 【从 Java 1.7 开始支持】</span></span><br><span class="line"><span class="comment"> *      八进制: 0</span></span><br><span class="line"><span class="comment"> *      十进制: 没有前缀，默认就是</span></span><br><span class="line"><span class="comment"> *      十六进制: 0x 或 0X</span></span><br><span class="line"><span class="comment"> * 2、不将计算机组成原理中所说的原码应用到 Java 程序中</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TrueForm</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">         <span class="comment">// 【计算机组成原理】正数的原码 : 00001011  【 11 】 </span></span><br><span class="line">         <span class="keyword">byte</span> first = <span class="number">0b00001011</span> ;</span><br><span class="line">         System.out.println( first );</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 【计算机组成原理】负数的原码 : 10001011   【 -11 】 </span></span><br><span class="line">        <span class="keyword">byte</span> fourth = (<span class="keyword">byte</span>)<span class="number">0b10001011</span> ; <span class="comment">// 默认将 0b10001011 当做 int 对待</span></span><br><span class="line">        System.out.println( fourth );</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComplementForm</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">          <span class="comment">// 【计算机组成原理】正数的原码 : 00001011  【 11 】 </span></span><br><span class="line">          <span class="keyword">byte</span> first = <span class="number">0b00001011</span> ;</span><br><span class="line">          System.out.println( first );</span><br><span class="line"></span><br><span class="line">          <span class="comment">// 【计算机组成原理】正数的反码 : 00001011  【 11 】 </span></span><br><span class="line">          <span class="keyword">byte</span> second = <span class="number">0b00001011</span> ;</span><br><span class="line">          System.out.println( second );</span><br><span class="line"></span><br><span class="line">          <span class="comment">// 【计算机组成原理】正数的补码 : 00001011  【 11 】 </span></span><br><span class="line">          <span class="keyword">byte</span> third = <span class="number">0b00001011</span> ;</span><br><span class="line">          System.out.println( third );</span><br><span class="line"></span><br><span class="line">          System.out.println( <span class="string">"~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~"</span> );</span><br><span class="line">  </span><br><span class="line">          <span class="comment">// 【计算机组成原理】负数的原码 : 10001011   【 -11 】 </span></span><br><span class="line">          <span class="keyword">byte</span> fourth = (<span class="keyword">byte</span>)<span class="number">0b10001011</span> ; <span class="comment">// 默认将 0b10001011 当做 int 对待</span></span><br><span class="line">          System.out.println( fourth );</span><br><span class="line"></span><br><span class="line">           <span class="comment">// 【计算机组成原理】负数的反码 : 11110100</span></span><br><span class="line">           <span class="keyword">byte</span> fifth = (<span class="keyword">byte</span>)<span class="number">0b11110100</span> ; <span class="comment">// 默认将 0b11110100 当做 int 对待</span></span><br><span class="line">           System.out.println( fifth ); <span class="comment">// -12</span></span><br><span class="line"></span><br><span class="line">           <span class="comment">// 【计算机组成原理】负数的补码 : 11110101 </span></span><br><span class="line">           <span class="keyword">byte</span> sixth = (<span class="keyword">byte</span>)<span class="number">0b11110101</span> ; <span class="comment">// 默认将 0b11110100 当做 int 对待</span></span><br><span class="line">           System.out.println( sixth ); <span class="comment">// -11</span></span><br><span class="line"></span><br><span class="line">           System.out.println( <span class="string">"~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~"</span> );</span><br><span class="line"></span><br><span class="line">           <span class="keyword">int</span> x = <span class="number">0b1111_1111_1111_1111_1111_1111_1001_0110</span> ; <span class="comment">// 【补码】</span></span><br><span class="line">           <span class="comment">// 0b1111_1111_1111_1111_1111_1111_1001_0101 【反码: 补码 减去 1 得到 反码 ，符号位不变】</span></span><br><span class="line">           <span class="comment">// 0b1000_0000_0000_0000_0000_0000_0110_1010 【原码: 反码除符号位外逐位取反】</span></span><br><span class="line">           System.out.println( x );</span><br><span class="line"></span><br><span class="line">           System.out.println( <span class="string">"~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~"</span> );</span><br><span class="line"></span><br><span class="line">           <span class="comment">// 1001_0110_1011_0100_0011_1</span></span><br><span class="line">           System.out.println( (<span class="keyword">short</span>)<span class="number">0b1101_0110_1000_0111</span> );</span><br><span class="line">           <span class="comment">// 【补码】1101_0110_1000_0111</span></span><br><span class="line">           <span class="comment">// 【反码】1101_0110_1000_0110</span></span><br><span class="line">           <span class="comment">// 【原码】1010_1001_0111_1001</span></span><br><span class="line">           System.out.println( (<span class="keyword">short</span>)<span class="number">1234567.89</span> ); <span class="comment">// 1001_0110_1011_0100_0011_1.111_0001_1110_1011_1000_0101_0001_11101</span></span><br><span class="line"></span><br><span class="line">           System.out.println( <span class="number">0b0010_1001_0111_1001</span> );</span><br><span class="line">  </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseMinusOneComplement</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">          <span class="comment">// 【计算机组成原理】正数的原码 : 00001011  【 11 】 </span></span><br><span class="line">          <span class="keyword">byte</span> first = <span class="number">0b00001011</span> ;</span><br><span class="line">          System.out.println( first );</span><br><span class="line"></span><br><span class="line">          <span class="comment">// 【计算机组成原理】正数的反码 : 00001011  【 11 】 </span></span><br><span class="line">          <span class="keyword">byte</span> second = <span class="number">0b00001011</span> ;</span><br><span class="line">          System.out.println( second );</span><br><span class="line"></span><br><span class="line">          System.out.println( <span class="string">"~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~"</span> );</span><br><span class="line">  </span><br><span class="line">          <span class="comment">// 【计算机组成原理】负数的原码 : 10001011   【 -11 】 </span></span><br><span class="line">          <span class="keyword">byte</span> fourth = (<span class="keyword">byte</span>)<span class="number">0b10001011</span> ; <span class="comment">// 默认将 0b10001011 当做 int 对待</span></span><br><span class="line">          System.out.println( fourth );</span><br><span class="line"></span><br><span class="line">           <span class="comment">// 【计算机组成原理】负数的反码 : 11110100 </span></span><br><span class="line">           <span class="keyword">byte</span> fifth = (<span class="keyword">byte</span>)<span class="number">0b11110100</span> ; <span class="comment">// 默认将 0b11110100 当做 int 对待</span></span><br><span class="line">           System.out.println( fifth );</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+</search>
