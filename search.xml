@@ -26,6 +26,34 @@
       </tags>
   </entry>
   <entry>
+    <title>Docker容器</title>
+    <url>/2020/03/13/docker%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<h1 id="Docker相关命令"><a href="#Docker相关命令" class="headerlink" title="Docker相关命令"></a>Docker相关命令</h1><h2 id="启动Docker"><a href="#启动Docker" class="headerlink" title="启动Docker"></a>启动Docker</h2><pre><code>systemctl start dcker
+          stop
+          restart
+          status (产看docker状态)
+          enable (设置开机启动)</code></pre><h2 id="查找镜像"><a href="#查找镜像" class="headerlink" title="查找镜像"></a>查找镜像</h2><pre><code>docker search 镜像名</code></pre><h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2><pre><code>docker pull 镜像名 : 版本号</code></pre><h2 id="删除镜像"><a href="#删除镜像" class="headerlink" title="删除镜像"></a>删除镜像</h2><pre><code>docker rmi 镜像id （或名称:版本号）</code></pre><h2 id="查看所有镜像的id"><a href="#查看所有镜像的id" class="headerlink" title="查看所有镜像的id"></a>查看所有镜像的id</h2><pre><code>docker images -q</code></pre><h1 id="Docker容器相关命令"><a href="#Docker容器相关命令" class="headerlink" title="Docker容器相关命令"></a>Docker容器相关命令</h1><h2 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h2><pre><code>docker run -it --name=容器名 镜像名 : 版本名 /bin/bash
+
+i：保持运行
+t：分配伪终端
+/bin/bash：指定shell</code></pre><h2 id="退出容器"><a href="#退出容器" class="headerlink" title="退出容器"></a>退出容器</h2><pre><code>exit</code></pre><h2 id="查看正在运行的容器"><a href="#查看正在运行的容器" class="headerlink" title="查看正在运行的容器"></a>查看正在运行的容器</h2><pre><code>docker ps</code></pre><h2 id="查看所有容器"><a href="#查看所有容器" class="headerlink" title="查看所有容器"></a>查看所有容器</h2><pre><code>docker ps -a</code></pre><h2 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h2><pre><code>docker exec -it 容器名 /bin/bash
+            -id （exit不会不会退出，后台运行）</code></pre><h2 id="删除容器"><a href="#删除容器" class="headerlink" title="删除容器"></a>删除容器</h2><pre><code>docker rm 容器名/id</code></pre><h1 id="Docker中的数据卷"><a href="#Docker中的数据卷" class="headerlink" title="Docker中的数据卷"></a>Docker中的数据卷</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><pre><code>数据卷是宿主机中的一个目录或文件
+
+总结：docker容器中的文件与本机文件操作相关联（同时产生同样的变化）
+
+* 一个数据卷能被多个容器挂载</code></pre><h2 id="配置数据卷"><a href="#配置数据卷" class="headerlink" title="配置数据卷"></a>配置数据卷</h2><pre><code>. 创建启动容器时，使用-v参数
+docker run ... -v 宿主机目录:容器内目录 ...
+
+* 目录必须时绝对路径
+  若文件不存在，则自动创建</code></pre>]]></content>
+      <categories>
+        <category>Docker</category>
+      </categories>
+      <tags>
+        <tag>Docker基本操作</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux基本命令的使用</title>
     <url>/2020/03/09/linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h1 id="Linux文件系统目录说明"><a href="#Linux文件系统目录说明" class="headerlink" title="Linux文件系统目录说明"></a>Linux文件系统目录说明</h1><pre><code>/home 用户的主目录，在Linux中，每个用户都有一个自己的目录，一般该目录是以用户的账号命名的
@@ -182,34 +210,6 @@ $PATH  :分隔符</code></pre><h2 id="source命令"><a href="#source命令" clas
       </categories>
       <tags>
         <tag>linux基本操作</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Docker容器</title>
-    <url>/2020/03/13/docker%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<h1 id="Docker相关命令"><a href="#Docker相关命令" class="headerlink" title="Docker相关命令"></a>Docker相关命令</h1><h2 id="启动Docker"><a href="#启动Docker" class="headerlink" title="启动Docker"></a>启动Docker</h2><pre><code>systemctl start dcker
-          stop
-          restart
-          status (产看docker状态)
-          enable (设置开机启动)</code></pre><h2 id="查找镜像"><a href="#查找镜像" class="headerlink" title="查找镜像"></a>查找镜像</h2><pre><code>docker search 镜像名</code></pre><h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2><pre><code>docker pull 镜像名 : 版本号</code></pre><h2 id="删除镜像"><a href="#删除镜像" class="headerlink" title="删除镜像"></a>删除镜像</h2><pre><code>docker rmi 镜像id （或名称:版本号）</code></pre><h2 id="查看所有镜像的id"><a href="#查看所有镜像的id" class="headerlink" title="查看所有镜像的id"></a>查看所有镜像的id</h2><pre><code>docker images -q</code></pre><h1 id="Docker容器相关命令"><a href="#Docker容器相关命令" class="headerlink" title="Docker容器相关命令"></a>Docker容器相关命令</h1><h2 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h2><pre><code>docker run -it --name=容器名 镜像名 : 版本名 /bin/bash
-
-i：保持运行
-t：分配伪终端
-/bin/bash：指定shell</code></pre><h2 id="退出容器"><a href="#退出容器" class="headerlink" title="退出容器"></a>退出容器</h2><pre><code>exit</code></pre><h2 id="查看正在运行的容器"><a href="#查看正在运行的容器" class="headerlink" title="查看正在运行的容器"></a>查看正在运行的容器</h2><pre><code>docker ps</code></pre><h2 id="查看所有容器"><a href="#查看所有容器" class="headerlink" title="查看所有容器"></a>查看所有容器</h2><pre><code>docker ps -a</code></pre><h2 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h2><pre><code>docker exec -it 容器名 /bin/bash
-            -id （exit不会不会退出，后台运行）</code></pre><h2 id="删除容器"><a href="#删除容器" class="headerlink" title="删除容器"></a>删除容器</h2><pre><code>docker rm 容器名/id</code></pre><h1 id="Docker中的数据卷"><a href="#Docker中的数据卷" class="headerlink" title="Docker中的数据卷"></a>Docker中的数据卷</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><pre><code>数据卷是宿主机中的一个目录或文件
-
-总结：docker容器中的文件与本机文件操作相关联（同时产生同样的变化）
-
-* 一个数据卷能被多个容器挂载</code></pre><h2 id="配置数据卷"><a href="#配置数据卷" class="headerlink" title="配置数据卷"></a>配置数据卷</h2><pre><code>. 创建启动容器时，使用-v参数
-docker run ... -v 宿主机目录:容器内目录 ...
-
-* 目录必须时绝对路径
-  若文件不存在，则自动创建</code></pre>]]></content>
-      <categories>
-        <category>Docker</category>
-      </categories>
-      <tags>
-        <tag>Docker基本操作</tag>
       </tags>
   </entry>
 </search>
